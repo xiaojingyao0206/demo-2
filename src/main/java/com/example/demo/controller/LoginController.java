@@ -67,10 +67,23 @@ public class LoginController {
 		return "withdraw";
 	}
 	
+	
 	@RequestMapping("/resetPassword")
 	public String resetPassword(){
 		
 		return "resetPassword";
+	}
+	
+	@RequestMapping("/qrcode")
+	public String qrcode(){
+		
+		return "qrcode";
+	}
+	
+	@RequestMapping("/test")
+	public String test(){
+		
+		return "test";
 	}
 	
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
