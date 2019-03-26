@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.BankInfoMapper;
+import com.example.demo.dao.UserInfoMapper;
 import com.example.demo.pojo.BankInfo;
 import com.example.demo.service.BankInfoService;
 
@@ -13,7 +15,7 @@ import com.example.demo.service.BankInfoService;
 public class BankInfoServiceImpl implements BankInfoService {
 
 	@Resource
-	BankInfo bankInfo;
+	BankInfoMapper bankInfoMapper;
 	
 	@Override
 	public List<BankInfo> selectByUserId(String userId) {
@@ -23,8 +25,21 @@ public class BankInfoServiceImpl implements BankInfoService {
 
 	@Override
 	public int insert(BankInfo bankInfo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result;
+		String bankCard = bankInfo.getBankCard();
+		Integer count = bankInfoMapper.countByBankCard(bankCard);
+		if(count>0){
+			result = 1;
+		}else{
+			bankInfoMapper.insert(bankInfo);			
+			if(bankInfo != null){
+				result = 0;
+			}else{
+				result = 2;
+			}
+		}
+		
+		return result;
 	}
 
 	@Override

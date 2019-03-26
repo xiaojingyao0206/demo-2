@@ -100,7 +100,7 @@ function submitForm(){
 			</div>
 			<div class="zc-span">ÃÜ     Âë£º</div>
 			<div class="zc-input">
-				<input  style="color:black;" type="password" placeholder="ÇëÊäÈëµÇÂ¼ÃÜÂë" name="password" id="passWord"/>
+				<input  style="color:black;" type="password" placeholder="ÇëÊäÈëµÇÂ¼ÃÜÂë" name="password" id="password"/>
 			</div>
 			<div class="zc-span">ÖØ¸´ÃÜÂë£º</div>
 			<div class="zc-input">

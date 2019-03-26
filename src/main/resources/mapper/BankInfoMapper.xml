@@ -77,6 +77,12 @@
   <delete id="deleteByCardId" parameterType="String">
    
     delete from bank_info
-    where bank_card = #{bankCard,jdbcType=INTEGER}
+    where bank_card = #{bankCard,jdbcType=VARCHAR}
   </delete>
+  
+  <select id="countByBankCard" parameterType="String" resultType="java.lang.Integer">
+    select count(*) 
+    from bank_info
+    where bank_card = #{bankCard,jdbcType=VARCHAR}
+  </select>
 </mapper>

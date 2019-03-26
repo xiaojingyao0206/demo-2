@@ -25,5 +25,9 @@ public interface BankInfoMapper {
 	List<BankInfo> selectByUserId(String userId);
 	
 	int deleteByCardId(String bankCard);
+
+	Integer countByBankCard(String bankCard);
+
+	
 	
 }

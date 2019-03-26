@@ -20,30 +20,32 @@ import com.example.demo.service.UserService;
 public class UserServiceImpl implements UserService{
 
 	@Resource
-	UserInfoMapper userDao;
+	UserInfoMapper userInfoMapper;
 	
 	@Override
 	public UserInfo selectByUserName(String name) {
 		// TODO Auto-generated method stub
-		return userDao.selectByUserName(name);
+		return userInfoMapper.selectByUserName(name);
 	}
 
 	@Override
 	public List<UserInfo> selectAll() {
 		// TODO Auto-generated method stub
-		return userDao.selectAll();
+		return userInfoMapper.selectAll();
 	}
 
 	@Override
 	public String insert(UserInfo userInfo) {
 		String result="";
 		String userName = userInfo.getUserName();
-		Integer count = userDao.countByUserName(userName);
+		Integer count = userInfoMapper.countByUserName(userName);
 		if(count>0){
 			result = "1";
 		}else{
-			userDao.insert(userInfo);			
+			userInfoMapper.insert(userInfo);			
 			if(userInfo != null){
+				result = "0";
+			}else{
 				result = "2";
 			}
 		}

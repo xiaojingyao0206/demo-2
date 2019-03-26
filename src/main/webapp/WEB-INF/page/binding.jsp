@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="static/weui1/weui.min.css">
 <link rel="stylesheet" href="static/weui1/jquery-weui.css">
 <script type="text/javascript" src="static/weui1/jquery-2.1.4.js"></script>
+
 <script type="text/javascript" src="static/weui1/jquery-weui.js"></script>
 <script type="text/javascript" src="static/weui1/public.js"></script>
 <link rel="stylesheet" href="static/weui1/demos.css">
@@ -23,15 +24,58 @@
 </style>
 
 <script type="text/javascript">
-var username = <%=s.getAttribute("userName")%>;
+var userId = <%=s.getAttribute("userId")%>;
 
 function submitForm(){
+	if( userId==""||userId==null){
+		$.alert("暂未登录");
+		
+	}
 	var bankName = document.getElementById("bankName").value;
 	var bankActivation=$("#bankActivation").val();
 	var subBank=$("#subBank").val();
 	var bankCard=$("#bankCard").val();
+	if(isSpace(bankName)){
+		   $.alert("请填写开户姓名", " ");
+		   return;		   
+	}
+	if(isSpace(bankActivation)){
+		   $.alert("请填写银行卡开户行", " ");
+		   return;		   
+	}
+	if(isSpace(subBank)){
+		   $.alert("请填写银行卡开户支行", " ");
+		   return;		   
+	}
+	if(isSpace(bankCard)){
+		   $.alert("请填写银行卡号", " ");
+		   return;		   
+	}
 	
-	alert(subBank);
+	$.ajax({
+  		url:"bank/binding",
+  		type:"post",
+  		async:false,
+  		data:{"bankName":bankName,
+  			  "bankActivation":bankActivation,
+  			  "subBank":subBank,
+  			  "bankCard":bankCard},
+  		dataType:"json",
+  		success:function(data){
+  			if(data !=null && data==1){
+  				$.alert(username+"该银行卡已被绑定");
+  				return;
+  				
+  		}
+  			if(data==0){
+  				$.alert("注册成功!");
+  				
+  			}
+  			if(data==2){
+  				
+  			}
+  	}
+	});  
 }
 </script>
 
