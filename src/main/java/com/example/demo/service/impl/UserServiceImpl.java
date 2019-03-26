@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.UserDao;
+import com.example.demo.dao.UserInfoMapper;
 import com.example.demo.pojo.User;
+import com.example.demo.pojo.UserInfo;
 import com.example.demo.service.UserService;
 
 
@@ -18,30 +20,30 @@ import com.example.demo.service.UserService;
 public class UserServiceImpl implements UserService{
 
 	@Resource
-	UserDao userDao;
+	UserInfoMapper userDao;
 	
 	@Override
-	public User selectByUserName(String name) {
+	public UserInfo selectByUserName(String name) {
 		// TODO Auto-generated method stub
 		return userDao.selectByUserName(name);
 	}
 
 	@Override
-	public List<User> selectAll() {
+	public List<UserInfo> selectAll() {
 		// TODO Auto-generated method stub
 		return userDao.selectAll();
 	}
 
 	@Override
-	public String insert(User user) {
+	public String insert(UserInfo userInfo) {
 		String result="";
-		String userName = user.getName();
+		String userName = userInfo.getUserName();
 		Integer count = userDao.countByUserName(userName);
 		if(count>0){
 			result = "1";
 		}else{
-			userDao.insert(user);			
-			if(user != null){
+			userDao.insert(userInfo);			
+			if(userInfo != null){
 				result = "2";
 			}
 		}

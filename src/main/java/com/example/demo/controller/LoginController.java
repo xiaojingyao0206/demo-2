@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.pojo.User;
+import com.example.demo.pojo.UserInfo;
 import com.example.demo.service.UserService;
 
 
@@ -88,7 +89,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	@ResponseBody
-    public List<User> getAll() {
+    public List<UserInfo> getAll() {
         return userService.selectAll();
 	}
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.pojo.User;
+import com.example.demo.pojo.UserInfo;
 import com.example.demo.service.UserService;
 
 @Controller
@@ -23,35 +24,35 @@ public class UserController {
 	UserService userService;
 	
 	@Resource 
-	private User user;
+	private UserInfo userInfo;
 	
 	
 	@RequestMapping(value = "user/register", method = RequestMethod.POST)
 	@ResponseBody
 	public String register(String name,String password,String phone){
-		user.setName(name);
-		user.setPassword(password);
-		user.setPhone(phone);
-		return userService.insert(user);
+		userInfo.setUserName(name);
+		userInfo.setEnterPw(password);
+		userInfo.setUserPhone(phone);
+		return userService.insert(userInfo);
 		
 	}
 
 	@RequestMapping(value = "user/login", method = RequestMethod.POST)
 	@ResponseBody
 	public String login(String name,String password,HttpServletRequest request){			
-		user =  userService.selectByUserName(name);
+		userInfo =  userService.selectByUserName(name);
 		
-		if(user == null){
+		if(userInfo == null){
 			return "2";
 		}else{
-			String realPassWord = user.getPassword();
+			String realPassWord = userInfo.getEnterPw();
 			
 			if(!realPassWord.equals(password)){
 				return "1";
 			}else{
 				HttpSession session=request.getSession();
 				session.setAttribute("userName", name);
-				
+				session.setAttribute("userId", userInfo.getUserId());
 				return "0";
 			}
 			

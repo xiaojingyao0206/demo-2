@@ -6,15 +6,16 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.pojo.User;
+import com.example.demo.pojo.UserInfo;
 
 @Service
 public interface UserService {
 	
-	public User selectByUserName(String name);
+	public UserInfo selectByUserName(String name);
 	 
-    public List<User> selectAll();
+    public List<UserInfo> selectAll();
     
-    public String insert(User user);
+    public String insert(UserInfo userInfo);
     
     
 }

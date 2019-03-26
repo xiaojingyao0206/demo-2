@@ -1,5 +1,8 @@
 package com.example.demo.dao;
 
+import java.util.List;
+
+import com.example.demo.pojo.User;
 import com.example.demo.pojo.UserInfo;
 
 public interface UserInfoMapper {
@@ -50,4 +53,10 @@ public interface UserInfoMapper {
      * @mbg.generated Tue Mar 19 15:39:42 CST 2019
      */
     int updateByPrimaryKey(UserInfo record);
+
+    UserInfo selectByUserName(String userName);
+
+	List<UserInfo> selectAll();
+
+	Integer countByUserName(String userName);
 }

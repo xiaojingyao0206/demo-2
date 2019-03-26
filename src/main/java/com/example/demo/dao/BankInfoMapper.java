@@ -1,7 +1,12 @@
 package com.example.demo.dao;
 
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
 import com.example.demo.pojo.BankInfo;
 
+@Repository
 public interface BankInfoMapper {
 
 	/**
@@ -15,4 +20,10 @@ public interface BankInfoMapper {
 	 * @mbg.generated  Tue Mar 19 15:39:42 CST 2019
 	 */
 	int insertSelective(BankInfo record);
+	
+	
+	List<BankInfo> selectByUserId(String userId);
+	
+	int deleteByCardId(String bankCard);
+	
 }
