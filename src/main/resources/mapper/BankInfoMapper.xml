@@ -85,4 +85,12 @@
     from bank_info
     where bank_card = #{bankCard,jdbcType=VARCHAR}
   </select>
+  
+   <select id="selectBankInfo" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+     *
+    from bank_info
+    where user_id = #{userId,jdbcType=INTEGER}
+    and bank_card = #{bankCard,jdbcType=VARCHAR}
+  </select>
 </mapper>

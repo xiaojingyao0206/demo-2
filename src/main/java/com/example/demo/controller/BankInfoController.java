@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -64,5 +67,18 @@ public class BankInfoController {
 		return mav;
 	}
 
+	@RequestMapping(value="/bankInfo", method = RequestMethod.GET)
+	public ModelAndView bankInfo(@RequestParam(value = "bankCard", defaultValue = "null") String bankCard,HttpServletRequest request) {
+		HttpSession session=request.getSession();
+		Integer userId = (Integer) session.getAttribute("userId");
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("bankCard", bankCard);
+		
+		BankInfo bankInfo = service.selectBankInfo(map);
+		ModelAndView mav = new ModelAndView("bankInfo");
+		mav.addObject("bankInfo", bankInfo);
+		return mav;
+	}
 
 }

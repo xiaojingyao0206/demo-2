@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -46,6 +47,12 @@ public class BankInfoServiceImpl implements BankInfoService {
 	public Integer deleteByCardId(String bankCard) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public BankInfo selectBankInfo(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return bankInfoMapper.selectBankInfo(map);
 	}
 
 }

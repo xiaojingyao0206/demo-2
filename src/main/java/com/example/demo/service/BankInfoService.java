@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -15,5 +16,9 @@ public interface BankInfoService {
     public Integer insert(BankInfo bankInfo);
     
     public Integer deleteByCardId(String bankCard);
+    
+    public BankInfo selectBankInfo(Map<String,Object> map);
+
+	
 
 }
