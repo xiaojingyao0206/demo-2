@@ -188,7 +188,7 @@
         select * from user_info
   </select>
 	
-  <select id="countByUserName" parameterType="string" resultType="int">
+  <select id="countByUserName" parameterType="string" resultType="Integer">
         select count(*) from user_info where user_name=#{userName}
   </select>
   

@@ -25,12 +25,17 @@
 
 <script type="text/javascript">
 var userId = <%=s.getAttribute("userId")%>;
-
-function submitForm(){
+$(function(){
 	if( userId==""||userId==null){
-		$.alert("ÔÝÎ´µÇÂ¼");
+		$.alert("ÔÝÎ´µÇÂ¼²»ÄÜ°ó¶¨,ÇëÏÈµÇÂ¼","",function(){
+			window.location.href="login";
+			return;
+		});
 		
 	}
+});
+function submitForm(){
+	
 	var bankName = document.getElementById("bankName").value;
 	var bankActivation=$("#bankActivation").val();
 	var subBank=$("#subBank").val();
@@ -68,11 +73,11 @@ function submitForm(){
   				
   		}
   			if(data==0){
-  				$.alert("×¢²á³É¹¦!");
+  				$.alert("°ó¶¨³É¹¦!");
   				
   			}
   			if(data==2){
-  				
+  				$.alert("°ó¶¨Ê§°Ü!");
   			}
   	}
 	});  

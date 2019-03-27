@@ -10,10 +10,10 @@ import com.example.demo.pojo.BankInfo;
 @Service
 public interface BankInfoService {
 	
-	public List<BankInfo> selectByUserId(String userId);
+	public List<BankInfo> selectByUserId(Integer userId);
     
-    public int insert(BankInfo bankInfo);
+    public Integer insert(BankInfo bankInfo);
     
-    public int deleteByCardId(String bankCard);
+    public Integer deleteByCardId(String bankCard);
 
 }

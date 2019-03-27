@@ -18,14 +18,14 @@ public class BankInfoServiceImpl implements BankInfoService {
 	BankInfoMapper bankInfoMapper;
 	
 	@Override
-	public List<BankInfo> selectByUserId(String userId) {
+	public List<BankInfo> selectByUserId(Integer userId) {
 		// TODO Auto-generated method stub
-		return null;
+		return bankInfoMapper.selectByUserId(userId);
 	}
 
 	@Override
-	public int insert(BankInfo bankInfo) {
-		int result;
+	public Integer insert(BankInfo bankInfo) {
+		Integer result;
 		String bankCard = bankInfo.getBankCard();
 		Integer count = bankInfoMapper.countByBankCard(bankCard);
 		if(count>0){
@@ -43,7 +43,7 @@ public class BankInfoServiceImpl implements BankInfoService {
 	}
 
 	@Override
-	public int deleteByCardId(String bankCard) {
+	public Integer deleteByCardId(String bankCard) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

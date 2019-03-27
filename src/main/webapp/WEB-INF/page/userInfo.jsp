@@ -57,6 +57,10 @@ function loginChange(loginFlag){
 function queryData(){
 	window.location.href="balance";
 }
+function myCard(){
+	window.location.href="cardList";
+}
+
 function doLogin(){
 	
 	location.href="login";
@@ -143,7 +147,7 @@ function loginOut(){
           <div class="weui-cell__ft"></div>
         </a>
         
-        <a class="weui-cell weui-cell_access" href="javaScript:;" onclick="queryData();">
+        <a class="weui-cell weui-cell_access" href="javaScript:;" onclick="myCard();">
           <div class="weui-cell__bd weui-cell_primary">
            <p>ÒøÐÐ¿¨</p>
           </div>
