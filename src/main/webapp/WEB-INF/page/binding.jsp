@@ -27,7 +27,7 @@
 var userId = <%=s.getAttribute("userId")%>;
 $(function(){
 	if( userId==""||userId==null){
-		$.alert("ÔÝÎ´µÇÂ¼²»ÄÜ°ó¶¨,ÇëÏÈµÇÂ¼","",function(){
+		$.alert("ÔÝÎ´µÇÂ¼,ÇëÏÈµÇÂ¼","",function(){
 			window.location.href="login";
 			return;
 		});

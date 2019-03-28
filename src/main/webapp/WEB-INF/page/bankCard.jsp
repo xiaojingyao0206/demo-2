@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=GBK"
     pageEncoding="GBK"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,13 +19,35 @@
 
 </style>
 <script type="text/javascript">
+var type = ${type};
 function submitForm(){
+	
 	location.href="binding";
 };
 function queryData(bankCard){
-	location.href="bankInfo?bankCard="+bankCard;
+	
+	if(type == "1"){
+		location.href="bankInfo?bankCard="+bankCard;
+	}else{
+		$.ajax({
+			url:"bank/getBankInfo?bankCard="+bankCard,
+			type:"GET",
+			async:false,
+			dataType:"json",
+			success:function(data){
+				if(data!=null){
+					$.toast("选择成功");					
+					localStorage.setItem("bankInfo",JSON.stringify(data));
+					window.location.href="withdraw";
+				}else{
+					
+					return;
+				}
+			}
+		});
+	}
+	
 }
-
 </script>
 <title>银行卡</title>
 </head>
@@ -34,10 +57,11 @@ function queryData(bankCard){
 		<c:forEach items="${list}" var="card" varStatus="vs"> 
 			 <div class="weui_media_box" onclick="queryData('${card.bankCard}')">
 				            <h1 class="weui_media_title" >
-				            		${card.bankName}
+				            		${card.bankActivation}
 				            </h1>
-				            <p class="weui_media_desc1"> 
-				         	  		${card.bankCard}
+				            <p class="weui_media_desc1"> 	
+				            		${card.bankCard.substring(0,4)}*******${card.bankCard.substring(card.bankCard.length()-4)}	         	  		
+				         	  		
 				            </p>
 			</div>
 			

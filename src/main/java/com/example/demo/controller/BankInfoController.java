@@ -58,12 +58,13 @@ public class BankInfoController {
 	}
 	
 	@RequestMapping("/cardList")
-	public ModelAndView  cardList(HttpServletRequest request) {
+	public ModelAndView  cardList(@RequestParam(value = "type", defaultValue = "null")String type ,HttpServletRequest request) {
 		HttpSession session=request.getSession();
 		Integer userId = (Integer) session.getAttribute("userId");
 		List<BankInfo> list = service.selectByUserId(userId);
 		ModelAndView mav = new ModelAndView("bankCard");
 		mav.addObject("list", list);
+		mav.addObject("type", type);
 		return mav;
 	}
 
@@ -79,6 +80,21 @@ public class BankInfoController {
 		ModelAndView mav = new ModelAndView("bankInfo");
 		mav.addObject("bankInfo", bankInfo);
 		return mav;
+	}
+	
+	@RequestMapping(value = "bank/getBankInfo", method = RequestMethod.GET)
+	@ResponseBody
+	public BankInfo getBankInfo(@RequestParam(value = "bankCard", defaultValue = "null") String bankCard,HttpServletRequest request){
+		
+		HttpSession session=request.getSession();
+		Integer userId = (Integer) session.getAttribute("userId");
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("bankCard", bankCard);
+		
+		BankInfo bankInfo = service.selectBankInfo(map);
+		return bankInfo;
+		
 	}
 
 }

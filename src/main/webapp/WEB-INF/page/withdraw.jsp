@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=GBK"
     pageEncoding="GBK"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%
+        HttpSession s = request.getSession();     
+  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,38 +24,75 @@
 </style>
 
 <script type="text/javascript">
-
+var userId = <%=s.getAttribute("userId")%>;
+var bankInfo = JSON.parse(localStorage.getItem("bankInfo"));
+$(function(){
+	if( userId==""||userId==null){
+		$.alert("暂未登录,请先登录","",function(){
+			window.location.href="login";
+			return;
+		});
+		
+	}
+	
+	if(bankInfo == null || bankInfo==""){
+		selectChange(false);
+	}else{
+		selectChange(true);
+	}
+});
+function selectChange(isSelect){
+	if(isSelect){
+		document.getElementById("isfalse").style.display="none";//隐藏
+		document.getElementById("istrue").style.display="";//显示
+		$("#bankName").html(bankInfo.bankActivation);
+		$("#cardId").html(bankInfo.bankCard.substr(0,4)+"********"+bankInfo.bankCard.substr(-4));
+			 
+	}else{
+		document.getElementById("istrue").style.display="none";//隐藏
+		document.getElementById("isfalse").style.display="";//显示
+		
+	}
+}
+function selectCard(){
+	window.location.href="cardList?type=2"
+}
+function submitForm(){
+	 localStorage.clear();
+}
 </script>
 <title>提现</title>
 
 </head>
-<body ontouchstart>
+<body >
 
-<div class="content" id="checkUserDiv">
-		<div class="zc-span">用户开户姓名：</div>
-		<div class="zc-input">
-			<input type="text" placeholder="请输入用户开户姓名" style="color:black;" />
-		</div>
-		<div class="zc-span">用户银行名：</div>
-		<div class="zc-input">
-			<input style="color:black;" type="text" placeholder="请输入用户银行名" />
-		</div>
-		<div class="zc-span">用户银行开户行：</div>
-		<div class="zc-input">
-			<input type="text" placeholder="请输入用户银行开户行" style="color:black;" />
-		</div>
-		<div class="zc-span">用户银行卡号：</div>
-		<div class="zc-input">
-			<input type="text" placeholder="请输入用户银行卡号" style="color:black;" />
-		</div>
-		<div class="zc-span">提现数量：</div>
-		<div class="zc-input">
-			<input type="text" placeholder="请输入提现数量" style="color:black;" />
+<div id="baseinfocontent">
+      	<div class="weui_cells weui_cells_access">
+      		  
+		    <div class="weui_cell" id="isfalse" onclick="selectCard()">
+		        <div class="weui_cell_hd">
+		        	<label class="weui_label">开户姓名</label>
+		        </div>
+		        <div class="weui_cell_bd weui_cell_primary" >
+		        	
+		         	<div class="weui_input" style="text-align: right;">></div>
+		        </div>
+			</div>
+			<div class="weui_cell" id="istrue" onclick="selectCard()">		
+			 <div class="weui_media_box" onclick="queryData('${card.bankCard}')">
+				            <h1 class="weui_media_title" id="bankName" >
+				            		
+				            </h1>
+				            <a></a>
+				            <p class="weui_media_desc1" id="cardId"> 	
+				            		         	  						         	  		
+				            </p>
+			</div>
+				<div class="weui_input" style="text-align: right;">></div>
+			</div>
 		</div>
 		
-		 <div style="clear:both"></div>
 </div>
-
 <div style="clear:both"></div>
 <div style="clear:both"></div>
 <div class="divcss"></div>
@@ -60,6 +101,7 @@
           <span style="color:#ffffff;">提现</span>
       </a>
 </div>
+
 
 </body>
 </html>

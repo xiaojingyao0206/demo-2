@@ -57,6 +57,13 @@ function loginChange(loginFlag){
 function queryData(){
 	window.location.href="balance";
 }
+function recharge(){
+	window.location.href="recharge";
+}
+function withdraw(){
+	window.location.href="withdraw";
+}
+
 function myCard(){
 	window.location.href="cardList";
 }
@@ -133,13 +140,18 @@ function loginOut(){
       </div></div>
 </div>
 <div class="">
-    	<a class="weui-cell weui-cell_access" href="javaScript:;" onclick="queryData();">
+    	<a class="weui-cell weui-cell_access" href="javaScript:;" onclick="recharge();">
           <div class="weui-cell__bd weui-cell_primary">
-           <p>我的余额</p>
+           <p>充值</p>
           </div>
           <div class="weui-cell__ft"></div>
         </a>
-        
+        <a class="weui-cell weui-cell_access" href="javaScript:;" onclick="withdraw();">
+          <div class="weui-cell__bd weui-cell_primary">
+           <p>提现</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </a>
         <a class="weui-cell weui-cell_access" href="javaScript:;" onclick="queryData();">
           <div class="weui-cell__bd weui-cell_primary">
            <p>我的充值记录</p>
