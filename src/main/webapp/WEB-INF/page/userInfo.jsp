@@ -65,7 +65,7 @@ function withdraw(){
 }
 
 function myCard(){
-	window.location.href="cardList";
+	window.location.href="cardList?type=1";
 }
 
 function doLogin(){

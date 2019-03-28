@@ -77,8 +77,10 @@ function submitForm(){
   				
   		}
   			if(data==0){
-  				$.alert("绑定成功!");
-  				window.location.href="cardList";
+  				$.alert("绑定成功!","",function(){
+  					window.location.href=document.referrer;
+	  				return;
+  				});
   			}
   			if(data==2){
   				$.alert("绑定失败!");

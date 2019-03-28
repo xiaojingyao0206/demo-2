@@ -97,4 +97,17 @@ public class BankInfoController {
 		
 	}
 
+	@RequestMapping(value = "bank/unbound", method = RequestMethod.POST)
+	@ResponseBody
+	public String unbound(String bankCard,HttpServletRequest request){
+		HttpSession session=request.getSession();
+		Integer userId = (Integer) session.getAttribute("userId");
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("bankCard", bankCard);
+		
+		return service.unBoundBankCard(map);
+		
+	}
+	
 }

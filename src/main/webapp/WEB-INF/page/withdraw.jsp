@@ -71,7 +71,7 @@ function submitForm(){
       		  
 		    <div class="weui_cell" id="isfalse" onclick="selectCard()">
 		        <div class="weui_cell_hd">
-		        	<label class="weui_label">开户姓名</label>
+		        	<label class="weui_label">选择银行卡</label>
 		        </div>
 		        <div class="weui_cell_bd weui_cell_primary" >
 		        	
@@ -90,8 +90,21 @@ function submitForm(){
 			</div>
 				<div class="weui_input" style="text-align: right;">></div>
 			</div>
+			 
 		</div>
-		
+		<div class="weui_cells weui_cells_access">
+		<div class="weui_cell" >
+		        <div class="weui_cell_hd">
+		        	<label class="weui_label" style="text-align: center;">提现数量</label>
+		        </div>
+		        <div class="weui_cell_bd weui_cell_primary" >
+		        	
+		         	<div class="weui_input" style="text-align: right;">
+		         		<input id="amount">
+		         	</div>
+		        </div>
+		</div>
+		</div>
 </div>
 <div style="clear:both"></div>
 <div style="clear:both"></div>

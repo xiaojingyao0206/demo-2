@@ -35,7 +35,32 @@ $(function(){
 		
 	}
 });
-
+function submitForm(){
+	var bankCard=$("#bankCard").text();
+	if(bankCard=="" || bankCard==null){
+		$.alert("暂未绑定银行卡！")
+		return;
+	}else{ 
+		$.ajax({
+	  		url:"bank/unbound",
+	  		type:"post",
+	  		async:false,
+	  		data:{"bankCard":bankCard},
+	  		dataType:"json",
+	  		success:function(data){
+	  			if(data=="0"){
+	  				$.alert("解绑成功!","",function(){
+	  					window.location.href=document.referrer;
+		  				return;
+	  				});
+	  				  				
+	  			}else{
+	  				$.alert("解绑失败!");
+	  			}
+	  		}
+		});  
+	}
+}
 </script>
 
 <title>银行卡信息</title>
@@ -50,7 +75,7 @@ $(function(){
 		        	<%-- <div class="weui-cell__bd">
 	     			 <input class="weui-input"  value = "${bankInfo.bankName}" id="destination">
 	  				</div> --%>
-		         	<div class="weui_input" style="text-align: right;">${bankInfo.bankName}</div>
+		         	<div class="weui_input"  style="text-align: right;">${bankInfo.bankName}</div>
 		        </div>
 			</div>
 			<div class="weui_cell">
@@ -77,7 +102,7 @@ $(function(){
 		        	<!-- <div class="weui-cell__bd">
 	     			 <input class="weui-input"  placeholder="请输入外出地点" id="destination">
 	  				</div> -->
-		         	<div class="weui_input" style="text-align: right;"><span>${bankInfo.bankCard}</span></div>
+		         	<div class="weui_input" id="bankCard" style="text-align: right;">${bankInfo.bankCard}</div>
 		        </div>
 			</div>
 		</div>

@@ -19,6 +19,6 @@ public interface BankInfoService {
     
     public BankInfo selectBankInfo(Map<String,Object> map);
 
-	
+	public String unBoundBankCard(Map<String, Object> map);
 
 }

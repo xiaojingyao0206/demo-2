@@ -31,4 +31,6 @@ public interface BankInfoMapper {
 
 	BankInfo selectBankInfo(Map<String, Object> map);
 	
+	void unBoundBankCard(Map<String, Object> map);
+	
 }

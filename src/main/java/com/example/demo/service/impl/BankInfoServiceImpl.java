@@ -55,4 +55,17 @@ public class BankInfoServiceImpl implements BankInfoService {
 		return bankInfoMapper.selectBankInfo(map);
 	}
 
+	@Override
+	public String unBoundBankCard(Map<String, Object> map) {
+		String ret="0";
+		try {
+			bankInfoMapper.unBoundBankCard(map);
+		} catch (Exception e) {
+			ret = "1";
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ret;			
+	}
+
 }
