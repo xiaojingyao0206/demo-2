@@ -20,6 +20,17 @@
 
 </style>
 <script type="text/javascript">
+var sysId = ${sysId};
+$(function(){
+	$.alert(sysId);
+	if( sysId==""||sysId==null){
+		$.alert("ÔÝÎ´µÇÂ¼,ÇëÏÈµÇÂ¼","",function(){
+			window.location.href="login";
+			return;
+		});
+		
+	}
+});
 function submitForm(){
 	var username=$("#userName").val();
 	 var password=$("#password").val();

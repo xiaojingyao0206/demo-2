@@ -32,11 +32,7 @@ public class LoginController {
 		return "index";
 	}
 	
-	@RequestMapping("/register")
-	public String register(){
-		
-		return "register";
-	}
+	
 	
 	@RequestMapping("/login")
 	public String login(){

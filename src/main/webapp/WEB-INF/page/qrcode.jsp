@@ -35,7 +35,7 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {
 	
 }); 
 function makeCode () {		
-	var elText = "http://172.16.17.125:8181/login";
+	var elText = "http://172.16.17.125:8181/userRegister?sysId=1";
 	
 	if (!elText) {
 		alert("Input a text");

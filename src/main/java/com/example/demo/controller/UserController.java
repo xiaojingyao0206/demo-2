@@ -11,7 +11,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.pojo.User;
 import com.example.demo.pojo.UserInfo;
@@ -68,5 +70,10 @@ public class UserController {
 		return "0";		
 	}
 
-	
+	@RequestMapping("userRegister")
+	public ModelAndView register(@RequestParam(value = "sysId", defaultValue = "null")String sysId){
+		ModelAndView mav = new ModelAndView("register");
+		mav.addObject("sysId", sysId);
+		return mav;
+	}
 }
