@@ -25,13 +25,11 @@ public class LoginController {
 	@Resource
 	UserService userService;
 	
-	@RequestMapping("/index")
+	@RequestMapping("/")
 	public String index(Map<String,Object> model){
-		model.put("time", new Date());
-		model.put("message", "hello");
+		
 		return "index";
 	}
-	
 	
 	
 	@RequestMapping("/login")
@@ -46,11 +44,6 @@ public class LoginController {
 		return "balance";
 	}
 	
-	@RequestMapping("/userInfo")
-	public String userInfo(){
-		
-		return "userInfo";
-	}
 	
 	@RequestMapping("/recharge")
 	public String recharge(){
@@ -65,17 +58,6 @@ public class LoginController {
 	}
 	
 	
-	@RequestMapping("/resetPassword")
-	public String resetPassword(){
-		
-		return "resetPassword";
-	}
-	
-	@RequestMapping("/qrcode")
-	public String qrcode(){
-		
-		return "qrcode";
-	}
 	
 	@RequestMapping("/test")
 	public String test(){
@@ -83,9 +65,4 @@ public class LoginController {
 		return "test";
 	}
 	
-	@RequestMapping(value = "/users", method = RequestMethod.GET)
-	@ResponseBody
-    public List<UserInfo> getAll() {
-        return userService.selectAll();
-	}
 }

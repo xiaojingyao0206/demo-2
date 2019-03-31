@@ -7,9 +7,13 @@ import com.example.demo.pojo.SysAdmin;
 @Service
 public interface SysAdminService {
 
-	public int deleteByPrimaryKey(Integer sysId);
+	public Integer deleteByPrimaryKey(Integer sysId);
 	
-	public int insert(SysAdmin record);
+	public Integer insert(SysAdmin record);
 	
 	public SysAdmin selectByPrimaryKey(Integer sysId);
+
+	public SysAdmin selectBySysName(String name);
+	
+	
 }

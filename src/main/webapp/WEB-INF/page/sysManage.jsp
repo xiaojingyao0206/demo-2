@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=GBK"
     pageEncoding="GBK"%>
-  <%
-        HttpSession s = request.getSession();     
-  %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+        HttpSession s = request.getSession();     
+  %> 
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=GBK">
@@ -22,11 +22,11 @@
 <link rel="stylesheet" href="static/front/style.css">
 <script type="text/javascript">
 
-var username = <%=s.getAttribute("userName")%>;
+var sysName = <%=s.getAttribute("sysName")%>;
 
 $(function(){
 	
-	 if(username==""||username==null){
+	 if(sysName==""||sysName==null){
 		 loginChange(false);
 		
 		$("#out").hide();
@@ -42,7 +42,7 @@ $(function(){
 });
 function loginChange(loginFlag){
 	if(loginFlag){
-		$(".avatar-text-box").text(username);
+		$(".avatar-text-box").text(sysName);
 		$(".avatar-text-box-hint").text("已登录");
 		
 		
@@ -55,55 +55,43 @@ function loginChange(loginFlag){
 	}
 }
 function queryData(){
-	if( username==""||username==null){
-		$.alert("暂未登录");
-		return;
-	}
 	window.location.href="balance";
 }
 function recharge(){
-	if( username==""||username==null){
-		$.alert("暂未登录");
-		return;
-	}
 	window.location.href="recharge";
 }
 function withdraw(){
-	if( username==""||username==null){
-		$.alert("暂未登录");
-		return;
-	}
 	window.location.href="withdraw";
 }
 
-function myCard(){
-	if( username==""||username==null){
+function qrcode(){
+	if( sysName==""||sysName==null){
 		$.alert("暂未登录");
 		return;
 	}
-	window.location.href="cardList?type=1";
+	window.location.href="qrcode";
 }
 
 function doLogin(){
 	
-	location.href="login";
+	location.href="syslogin";
 }
 function loginOut(){
 	
-	if( username==""||username==null){
+	if( sysName==""||sysName==null){
 		$.alert("暂未登录");
 		return;
 	}
 	$.confirm("您确定退出登录并解绑吗?", "确认注销", function() {
 		$.ajax({
-			url:"user/loginOut",
+			url:"sysAdmin/loginOut",
 			type:"post",
 			async:false,
 			dataType:"json",
 			success:function(data){
 				if(data=='0'){
 					$.toast("注销成功");					
-					 username = "";
+					sysName = "";
 					loginChange(false);
 				}else{
 					$.toast("注销失败");
@@ -116,7 +104,7 @@ function loginOut(){
       });
 }
 </script>
-<title>我的信息</title>
+<title>系统管理员</title>
 <style type="text/css">
 	body{background:#f0eff4;}
 	.weui-grid{padding-top:10px;padding-bottom:10px;}
@@ -158,26 +146,21 @@ function loginOut(){
 <div class="">
     	<a class="weui-cell weui-cell_access" href="javaScript:;" onclick="recharge();">
           <div class="weui-cell__bd weui-cell_primary">
-           <p>充值</p>
+           <p>我的用户</p>
           </div>
           <div class="weui-cell__ft"></div>
         </a>
-        <a class="weui-cell weui-cell_access" href="javaScript:;" onclick="withdraw();">
-          <div class="weui-cell__bd weui-cell_primary">
-           <p>提现</p>
-          </div>
-          <div class="weui-cell__ft"></div>
-        </a>
+   
         <a class="weui-cell weui-cell_access" href="javaScript:;" onclick="queryData();">
           <div class="weui-cell__bd weui-cell_primary">
-           <p>我的充值记录</p>
+           <p>我的用户充值记录</p>
           </div>
           <div class="weui-cell__ft"></div>
         </a>
         
-        <a class="weui-cell weui-cell_access" href="javaScript:;" onclick="myCard();">
+        <a class="weui-cell weui-cell_access" href="javaScript:;" onclick="qrcode();">
           <div class="weui-cell__bd weui-cell_primary">
-           <p>银行卡</p>
+           <p>我的二维码</p>
           </div>
           <div class="weui-cell__ft"></div>
         </a>

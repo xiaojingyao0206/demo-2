@@ -42,12 +42,14 @@ public class UserServiceImpl implements UserService{
 		if(count>0){
 			result = "1";
 		}else{
-			userInfoMapper.insert(userInfo);			
-			if(userInfo != null){
+			try {
+				userInfoMapper.insert(userInfo);
 				result = "0";
-			}else{
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 				result = "2";
-			}
+			}			
 		}
 		
 		return result;

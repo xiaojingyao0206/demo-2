@@ -38,29 +38,30 @@
 </style>
 <script type="text/javascript">
 function submitForm(){
-	var username=$("#userName").val();
+	var sysname=$("#userName").val();
 	var password=$("#passWord").val();
 	 $.ajax({
-	  		url:"user/login",
+	  		url:"sysAdmin/login",
 	  		type:"post",
 	  		async:false,
-	  		data:{"name":username,"password":password},
+	  		data:{"name":sysname,"password":password},
 	  		dataType:"json",
 	  		success:function(data){
 	  			if(data !=null && data=='1'){
 	  				$.alert("用户名与密码不匹配!");
 	  				return;
-	  				
-	  		}
+	  			}	
 	  			if(data=='0'){
 	  				$.alert("登录成功!");
-	  				
-	  				location.href="userInfo";
+	  				//用户登录type=2,管理员type=1
+	  				location.href="sysManage";
 	  			}
 	  			if(data=='2'){
 	  				$.alert("该用户不存在!");
 	  			}
-	  	}
+	  		}
+	  			
+	  	
 		});  
 	
 	
@@ -68,13 +69,13 @@ function submitForm(){
 	/* location.href="userInfo"; */
 }
 function register(){
-	location.href="register";
+	location.href="sysRegister";
 }
 function resetPassword(){
 	location.href="resetPassword";
 }
 </script>
-<title>用户登录</title>
+<title>管理员登录</title>
 </head>
 <body ontouchstart>
      
@@ -100,7 +101,7 @@ function resetPassword(){
 	    
 	    <div class="demos-content-padded">
 	      <a href="javascript:submitForm();" class="weui_btn weui_btn_primary">
-	      		<span style="color:#ffffff;">用户登录</span>
+	      		<span style="color:#ffffff;">管理员登录</span>
 	      </a>
 	    </div>
 	    
@@ -112,8 +113,8 @@ function resetPassword(){
 	    <div style="clear:both"></div>
 	    <div style="clear:both"></div>
 	    <div class="divcss"></div>
-	    <!-- <a href="javascript:register();" style="color:#888;" class="bstyle">用户注册</a> -->
-	    <a href="javascript:resetPassword();" style="color:#888;" class="astyle">忘记密码</a>
+	    <a href="javascript:register();" style="color:#888;" class="bstyle">管理员注册</a>
+	    <a href="javascript:resetPassword();" style="color:#888;" class="cstyle">忘记密码</a>
 		
 	    
 	   

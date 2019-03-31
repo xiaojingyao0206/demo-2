@@ -28,13 +28,27 @@ public class UserController {
 	@Resource 
 	private UserInfo userInfo;
 	
+	//重置密码
+	@RequestMapping("/resetPassword")
+	public String resetPassword(){
+		
+		return "resetPassword";
+	}
+	
+	//用户信息管理界面
+	@RequestMapping("/userInfo")
+	public String userInfo(){
+		
+		return "userInfo";
+	}
 	
 	@RequestMapping(value = "user/register", method = RequestMethod.POST)
 	@ResponseBody
-	public String register(String name,String password,String phone){
+	public String register(String name,String password,String phone,Integer sysId){
 		userInfo.setUserName(name);
 		userInfo.setEnterPw(password);
 		userInfo.setUserPhone(phone);
+		userInfo.setSysId(sysId);
 		return userService.insert(userInfo);
 		
 	}

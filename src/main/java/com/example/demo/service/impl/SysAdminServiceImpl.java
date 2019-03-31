@@ -15,15 +15,30 @@ public class SysAdminServiceImpl implements SysAdminService{
 	SysAdminMapper sysAdminMapper;
 	
 	@Override
-	public int deleteByPrimaryKey(Integer sysId) {
+	public Integer deleteByPrimaryKey(Integer sysId) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int insert(SysAdmin record) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Integer insert(SysAdmin record) {
+		Integer result;
+		String sysName = record.getSysName();
+		Integer count = sysAdminMapper.countByName(sysName);
+		if(count>0){
+			result = 1;
+		}else{
+			try {
+				sysAdminMapper.insert(record);
+				result = 0;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				result = 2;
+				e.printStackTrace();
+			}			
+		}
+		
+		return result;
 	}
 
 	@Override
@@ -32,4 +47,11 @@ public class SysAdminServiceImpl implements SysAdminService{
 		return null;
 	}
 
+	@Override
+	public SysAdmin selectBySysName(String sysName) {
+		// TODO Auto-generated method stub
+		return sysAdminMapper.selectBySysName(sysName);
+	}
+
+	
 }

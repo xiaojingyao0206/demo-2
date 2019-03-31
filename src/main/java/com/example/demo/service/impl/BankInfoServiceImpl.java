@@ -32,12 +32,14 @@ public class BankInfoServiceImpl implements BankInfoService {
 		if(count>0){
 			result = 1;
 		}else{
-			bankInfoMapper.insert(bankInfo);			
-			if(bankInfo != null){
+			try {
+				bankInfoMapper.insert(bankInfo);
 				result = 0;
-			}else{
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 				result = 2;
-			}
+			}			
 		}
 		
 		return result;

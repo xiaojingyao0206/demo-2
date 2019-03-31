@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=GBK"
-    pageEncoding="GBK"%>
+<%@ page language="java" contentType="text/html; charset=gbk"
+    pageEncoding="gbk"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<meta http-equiv="Content-Type" content="text/html; charset=GBK">
-
 
 <link rel="stylesheet" href="static/weui1/weui.min.css">
 <link rel="stylesheet" href="static/weui1/jquery-weui.css">
@@ -20,23 +19,16 @@
 
 </style>
 <script type="text/javascript">
-var sysId = ${sysId};
-$(function(){
-	/* $.alert(sysId); */
-	if( sysId==""||sysId==null){
-		$.alert("用户注册需向管理员申请链接!","",function(){
-			window.location.href="index";
-			return;
-		});
-		
-	}
-});
+
 function submitForm(){
 	var username=$("#userName").val();
 	 var password=$("#password").val();
 	 var repassword=$("#repassword").val();
+	 
 	 /* var idCard=$("#idCard").val(); */
 	 var phone=$("#phone").val();
+	 var email=$("#email").val();
+	 
 		var reg1 = /^1\d{10}$/;
 	if(username ==""){
 		   $.alert("请输入用户名", "警告");
@@ -64,6 +56,10 @@ function submitForm(){
 		 $.alert("请输入手机号码", " ");
 		  return; 
 	 }
+	 if(IsSpace(email)){
+		 $.alert("请输入邮箱地址", " ");
+		  return; 
+	 }
 	/*  if(!reg1.test(phone)){
 		 $.alert("请输入正确的手机号码", " ");
 		  return;
@@ -74,40 +70,35 @@ function submitForm(){
 		  return;
 	 } */
 		  $.ajax({
-	  		url:"user/register",
+	  		url:"sysAdmin/register",
 	  		type:"post",
 	  		async:false,
-	  		data:{"name":username,"password":password,"phone":phone,"sysId":sysId},
+	  		data:{"name":username,"password":password,"email":email,"phone":phone},
 	  		dataType:"json",
 	  		success:function(data){
-	  			if(data !=null && data=='1'){
+	  			if(data !=null && data==1){
 	  				$.alert(username+"该用户名已被注册");
 	  				return;
 	  			}
-	  			if(data=='0'){
+	  			if(data==0){
 	  				$.alert("注册成功!","",function(){
 	  					window.location.href="login";
-	  					
 	  				});
-	  				
 	  			}
-	  			if(data=='2'){
-	  				
+	  			if(data==2){
+	  				$.alert("注册失败!");
+	  				return;
 	  			}
-	  		}
-	  			
+	  		}			
 	  	
 		});  
 	/* location.href="login"; */
 }
 </script>
-<title>用户注册</title>
+
+<title>系统管理员注册</title>
 </head>
-
-
-<body >
-
-	      
+<body>
 	    <div class="content" id="checkUserDiv">
 			<div class="zc-span">用户名：</div>
 			<div class="zc-input">
@@ -125,7 +116,10 @@ function submitForm(){
 			<div class="zc-input">
 				<input type="text" style="color:black;" placeholder="请输入手机号码" name="phone" id="phone"/>
 			</div>
-			
+			<div class="zc-span">邮箱地址：</div>
+			<div class="zc-input">
+				<input type="text" style="color:black;" placeholder="请输入邮箱地址" name="email" id="email"/>
+			</div>
 
 	      
 	     	
@@ -141,6 +135,5 @@ function submitForm(){
 	      </a>
 	    </div>
 	    
-    
 </body>
 </html>
